@@ -1,8 +1,13 @@
 class Api::BaseController < ApplicationController
 
+  before_action :debug_log_headers
   before_action :authenticate_user!
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
+
+  def debug_log_headers
+    logger.debug "request.headers['Authorization']:#{request.headers['Authorization']}"
+  end
 
   def not_found
     render json: {

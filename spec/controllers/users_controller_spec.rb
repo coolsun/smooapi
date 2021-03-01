@@ -23,6 +23,30 @@ describe Api::UsersController, type: :request do
     end
   end
 
+  context 'When fetching campaigns' do
+    before do
+      login_with_api(user)
+      Rails.logger.info ("response.headers['Authorization']:#{response.headers['Authorization']}")
+      get "/api/campaigns", headers: {
+        'Authorization': response.headers['Authorization']
+      }
+    end
+    it 'returns 200' do
+      expect(response.status).to eq(200)
+    end
+  end
+
+  context 'When fetching campaigns without headers' do
+    before do
+      login_with_api(user)
+      Rails.logger.info ("response.headers['Authorization']:#{response.headers['Authorization']}")
+      get "/api/campaigns"
+    end
+    it 'returns 401' do
+      expect(response.status).to eq(401)
+    end
+  end
+
   context 'When a user is missing' do
     before do
       login_with_api(user)

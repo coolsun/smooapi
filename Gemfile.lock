@@ -90,9 +90,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-jwt (0.7.0)
+    devise-jwt (0.8.1)
       devise (~> 4.0)
-      warden-jwt_auth (~> 0.4)
+      warden-jwt_auth (~> 0.5)
     diff-lcs (1.4.4)
     dry-auto_inject (0.7.0)
       dry-container (>= 0.3.4)
@@ -153,10 +153,12 @@ GEM
     method_source (1.0.0)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
+    mini_portile2 (2.5.0)
     minitest (5.14.4)
     msgpack (1.4.2)
     nio4r (2.5.5)
-    nokogiri (1.11.1-x86_64-darwin)
+    nokogiri (1.11.1)
+      mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.20.1)
@@ -226,7 +228,7 @@ GEM
       rspec-mocks (~> 3.9.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.4)
-    rubocop (1.10.0)
+    rubocop (1.11.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -312,7 +314,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   devise (~> 4.7.3)
-  devise-jwt (~> 0.7.0)
+  devise-jwt (~> 0.8.0)
   factory_bot_rails
   faker
   foreman (~> 0.87.2)

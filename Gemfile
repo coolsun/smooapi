@@ -64,7 +64,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # bsun devise-jwt
 gem 'devise', '~> 4.7.3'
-gem 'devise-jwt', '~> 0.7.0'
+gem 'devise-jwt', '~> 0.8.0'
 gem 'foreman', '~> 0.87.2'
 gem 'jsonapi-rails', '~> 0.4.0'
 gem 'rack-cors', '1.1.1'
