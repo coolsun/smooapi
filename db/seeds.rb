@@ -59,7 +59,7 @@ comments = Comment.create([
     },
     {
         user_id: 2,
-        campaign_id: 3,
+        campaign_id: 1,
         content:'It is an emergency for my best friend Po and he is a very nic guy.  Please donate if you could.'
     },
 ])

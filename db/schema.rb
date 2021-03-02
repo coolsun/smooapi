@@ -10,13 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_28_170000) do
+ActiveRecord::Schema.define(version: 2021_03_01_192000) do
 
   create_table "campaigns", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "category_id"
     t.string "name"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_campaigns_on_category_id"
+    t.index ["user_id"], name: "index_campaigns_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "campaign_id"
+    t.string "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["campaign_id"], name: "index_comments_on_campaign_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "donations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "campaign_id"
+    t.decimal "amount", precision: 8, scale: 2
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["campaign_id"], name: "index_donations_on_campaign_id"
+    t.index ["user_id"], name: "index_donations_on_user_id"
   end
 
   create_table "jwt_denylists", force: :cascade do |t|
@@ -39,4 +70,10 @@ ActiveRecord::Schema.define(version: 2021_02_28_170000) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "campaigns", "categories"
+  add_foreign_key "campaigns", "users"
+  add_foreign_key "comments", "campaigns"
+  add_foreign_key "comments", "users"
+  add_foreign_key "donations", "campaigns"
+  add_foreign_key "donations", "users"
 end
