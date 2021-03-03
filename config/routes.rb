@@ -17,11 +17,8 @@ Rails.application.routes.draw do
         get :my_campaigns
       end
     end
-    resources :campaigns
     resources :donations
     resources :comments
-    
-
   end
 
   devise_for :users,
