@@ -41,13 +41,15 @@ campaigns = Campaign.create([
         user_id: 1,
         category_id: 2,
         name:'education',
+        goal:1000,
         description: 'Raise money and ambition for my master degree'
     },
     {
         user_id: 1,
         category_id: 3,
         name:'no shocker',
-        description: 'Raise money for no shockers'
+        goal:500,
+        description: 'Raise money for the little trooper'
     },
 ])
 
