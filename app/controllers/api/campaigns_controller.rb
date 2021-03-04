@@ -6,6 +6,20 @@ class Api::CampaignsController < Api::BaseController
         all_campaigns = current_user.campaigns
         render json: all_campaigns.to_json
     end    
+
+    # POST /create_comment
+    def create_comment
+      logger.info "1"
+      @comment = Comment.new(comment_params)
+      logger.info "2"
+      if @comment.save
+        logger.info "3"
+        render json: @comment, status: :created, location: @comment
+      else
+        logger.info "4"
+        render json: @comment.errors, status: :unprocessable_entity
+      end
+    end
     
     ##
     ## Below is from scaffold
@@ -30,10 +44,10 @@ class Api::CampaignsController < Api::BaseController
     # POST /campaigns
     def create
       @campaign = Campaign.new(campaign_params)
-  
       if @campaign.save
         render json: @campaign, status: :created, location: @campaign
       else
+
         render json: @campaign.errors, status: :unprocessable_entity
       end
     end
@@ -60,6 +74,12 @@ class Api::CampaignsController < Api::BaseController
   
       # Only allow a list of trusted parameters through.
       def campaign_params
-        params.fetch(:camp, {})
+        params.fetch(:campaign, {})
+      end
+
+      def comment_params
+        pp = params.require(:comment).permit(:user_id, :campaign_id, :content)
+        logger.info pp
+        pp
       end
 end

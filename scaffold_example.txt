@@ -1,0 +1,20 @@
+(nativescript) Bens-MacBook-Pro:smooapi ben$ rails g scaffold example
+Running via Spring preloader in process 11469
+      invoke  active_record
+      create    db/migrate/20210304181738_create_examples.rb
+      create    app/models/example.rb
+      invoke    rspec
+      create      spec/models/example_spec.rb
+      invoke      factory_bot
+      create        spec/factories/examples.rb
+      invoke  resource_route
+       route    resources :examples
+      invoke  scaffold_controller
+      create    app/controllers/examples_controller.rb
+      invoke    resource_route
+      invoke    rspec
+      create      spec/controllers/examples_controller_spec.rb
+      create      spec/routing/examples_routing_spec.rb
+      invoke      rspec
+      create        spec/requests/examples_spec.rb
+(nativescript) Bens-MacBook-Pro:smooapi ben$ rails example scaffold example

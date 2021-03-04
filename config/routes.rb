@@ -2,6 +2,7 @@ Rails.application.routes.default_url_options[:host] = 'localhost:3001'
 
 Rails.application.routes.draw do
 
+  resources :examples
   # no login required
   scope :api, defaults: {format: :json} do
     get 'campaigns/all_campaigns', to: 'campaigns#all_campaigns'
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
     resources :campaigns do
       collection do 
         get :my_campaigns
+        post :create_comment
       end
     end
     resources :donations

@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_01_192000) do
+ActiveRecord::Schema.define(version: 2021_03_04_181738) do
 
   create_table "campaigns", force: :cascade do |t|
     t.integer "user_id"
     t.integer "category_id"
     t.string "name"
     t.string "description"
+    t.decimal "goal", precision: 8, scale: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_campaigns_on_category_id"
@@ -48,6 +49,11 @@ ActiveRecord::Schema.define(version: 2021_03_01_192000) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["campaign_id"], name: "index_donations_on_campaign_id"
     t.index ["user_id"], name: "index_donations_on_user_id"
+  end
+
+  create_table "examples", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "jwt_denylists", force: :cascade do |t|
