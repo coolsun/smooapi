@@ -20,7 +20,11 @@ class Api::CampaignsController < Api::BaseController
   
     # GET /campaigns/1
     def show
-      render json: @campaign
+        @campaign = Campaign.find(params[:id])
+        @comments = @campaign.comments
+        h = { :campaign => @campaign, :comments => @comments }
+        logger.info h
+        render json: { :campaign => @campaign, :comments => @comments }
     end
   
     # POST /campaigns

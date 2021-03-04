@@ -6,14 +6,14 @@ Rails.application.routes.draw do
   scope :api, defaults: {format: :json} do
     get 'campaigns/all_campaigns', to: 'campaigns#all_campaigns'
     get 'campaigns/comments', to: 'campaigns#comments'
-    get 'campaigns/:id', to: 'campaigns#show'
+    get 'campaigns/show/:id', to: 'campaigns#show'
   end
 
   # login required
   namespace :api, defaults: { format: :json } do
     resources :users, only: %w[show]
     resources :campaigns do
-      member do 
+      collection do 
         get :my_campaigns
       end
     end

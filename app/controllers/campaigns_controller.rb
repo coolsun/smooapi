@@ -10,7 +10,10 @@ class CampaignsController < ApplicationController
     end    
 
     def show
-        campaign = Campaign.find_by(id: params[:id])
-        render json: campaign.to_json
+        @campaign = Campaign.find(params[:id])
+        @comments = @campaign.comments
+        h = { :campaign => @campaign, :comments => @comments }
+        logger.info h
+        render json: { :campaign => @campaign, :comments => @comments }
     end
 end
