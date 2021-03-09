@@ -72,8 +72,8 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'trillioninnovations.com',
-    user_name:            ENV["user"],
-    password:             ENV["dev"]
+    user_name:            ENV["SMOO_EMAIL_USER"],
+    password:             ENV["SMOO_EMAIL_TOKEN"],
     authentication:       'plain',
     enable_starttls_auto: true 
   }
