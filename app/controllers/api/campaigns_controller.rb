@@ -43,11 +43,20 @@ class Api::CampaignsController < Api::BaseController
   
     # POST /campaigns
     def create
-      @campaign = Campaign.new(campaign_params)
+      # data url => data:image/png;base64,iVBORw0KGgo....
+      data_type, base64_str = campaign_params[:file].split(",")
+      content_type = data_type
+      blob = ActiveStorage::Blob.create_after_upload!(
+        io: StringIO.new(Base64.decode64(base64_str)),
+        filename: campaign_params[:file_name],
+        content_type: data_type[/:.*;/][1...-1]
+      )
+      @campaign = Campaign.new(campaign_params.except(:file, :file_name))
+      @campaign.photo.attach(blob)
+      @campaign.photo_url = url_for(@campaign.photo)
       if @campaign.save
         render json: @campaign, status: :created
       else
-
         render json: @campaign.errors, status: :unprocessable_entity
       end
     end
@@ -74,7 +83,7 @@ class Api::CampaignsController < Api::BaseController
   
       # Only allow a list of trusted parameters through.
       def campaign_params
-        params.fetch(:campaign, {}).permit(:user_id, :category_id, :name, :description, :goal)
+        params.fetch(:campaign, {}).permit(:user_id, :category_id, :name, :description, :goal, :file, :file_name)
       end
 
       def comment_params
