@@ -1,7 +1,7 @@
 class CampaignsController < ApplicationController
     def all_campaigns
         all_campaigns = Campaign.all
-        render json: all_campaigns.to_json
+        render json: all_campaigns.as_json(methods: [:goal_reached, :campaign_started])
     end
 
     def comments
@@ -14,6 +14,7 @@ class CampaignsController < ApplicationController
         @comments = @campaign.comments
         h = { :campaign => @campaign, :comments => @comments }
         logger.info h
-        render json: { :campaign => @campaign, :comments => @comments }
+        render json: { :campaign => @campaign.as_json(methods: [:goal_reached, :campaign_started]),
+             :comments => @comments }
     end
 end

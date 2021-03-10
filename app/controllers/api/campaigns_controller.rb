@@ -4,7 +4,7 @@ class Api::CampaignsController < Api::BaseController
 
     def my_campaigns
         all_campaigns = current_user.campaigns
-        render json: all_campaigns.to_json
+        render json: all_campaigns.as_json(methods: [:goal_reached, :campaign_started])
     end    
 
     # POST /create_comment
@@ -29,7 +29,7 @@ class Api::CampaignsController < Api::BaseController
     def index
       @campaigns = Campaign.all
   
-      render json: @campaigns
+      render json: @campaigns.as_json(methods: [:goal_reached, :campaign_started])
     end
   
     # GET /campaigns/1
@@ -38,7 +38,8 @@ class Api::CampaignsController < Api::BaseController
         @comments = @campaign.comments
         h = { :campaign => @campaign, :comments => @comments }
         logger.info h
-        render json: { :campaign => @campaign, :comments => @comments }
+        render json: { :campaign => @campaign.as_json(methods: [:goal_reached, :campaign_started]), 
+          :comments => @comments }
     end
   
     # POST /campaigns
