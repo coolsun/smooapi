@@ -3,8 +3,8 @@ require 'rails_helper'
 describe Api::UsersController, type: :request do
 
   let (:user) { create_user}
+  let (:logout_url) { '/api/logout' }
   let (:name) { "UsersController" }
-
 
   context 'When fetching a user' do
     before do
@@ -134,6 +134,39 @@ describe Api::UsersController, type: :request do
     it 'returns 401' do
       expect(response.status).to eq(401)
     end
+  end
+
+  context 'When the user id is correct' do
+    before do
+      login_with_api(user)
+      res_header = response.headers['Authorization']
+      delete logout_url
+      get "/api/users/#{user.id}", headers: {
+        'Authorization': res_header
+      }
+    end
+
+    it 'returns the user' do
+      expect(json['data']).to have_id(user.id.to_s)
+      expect(json['data']).to have_type('users')
+    end
+
+  end
+
+  context 'When the user id is not correct' do
+    before do
+      login_with_api(user)
+      res_header = response.headers['Authorization']
+      delete logout_url
+      get "/api/users/3", headers: {
+        'Authorization': res_header
+      }
+    end
+
+    it 'returns 404' do
+      expect(response.status).to eq(404)
+    end
+
   end
 
 end
