@@ -21,4 +21,8 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* Testing
+foreman run rake
+
+* Debugging
+rdebug-ide --port 8000 -- bin/rails s

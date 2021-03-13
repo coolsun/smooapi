@@ -49,7 +49,9 @@ describe Api::UsersController, type: :request do
           'user_id': 1,
           'category_id': 1,
           'name': "this campaign is from rspec test",
-          'goal': 1000
+          'goal': 1000,
+          'file': "data:image/png;base64,YWJjZGU=",
+          'file_name': 'test.png'
         }
       },
       headers: {
