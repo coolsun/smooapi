@@ -37,12 +37,17 @@ module Smooapi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    # bsun 20210313 turn on sessions
-    # This also configures session_options for use below
-    config.session_store :cookie_store, key: '_interslice_session'
-    # Required for all session management (regardless of session_store)
-    config.middleware.use ActionDispatch::Cookies
-    config.middleware.use config.session_store, config.session_options
+    # bsun 20210313 if turned on sessions
+    # JWT will decouple the client and server even with cookies/local storage
+      # This also configures session_options for use below
+      ##config.session_store :cookie_store, key: '_interslice_session'
+      # Required for all session management (regardless of session_store)
+      ##config.middleware.use ActionDispatch::Cookies
+      ##config.middleware.use config.session_store, config.session_options
+
+    # bsun 20210313 set timezon
+    # export SMOO_TIMEZONE="Taipei"
+    config.time_zone = ENV["SMOO_TIMEZONE"] if ENV["SMOO_TIMEZONE"]
 
   end
 end

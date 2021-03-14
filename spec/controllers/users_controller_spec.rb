@@ -6,6 +6,8 @@ describe Api::UsersController, type: :request do
   let (:logout_url) { '/api/logout' }
   let (:name) { "UsersController" }
 
+
+
   context 'When fetching a user' do
     before do
       login_with_api(user)
@@ -24,7 +26,7 @@ describe Api::UsersController, type: :request do
     end
   end
 
-  context 'When fetching campaigns' do
+  context 'When fetching campaigns with headers' do
     before do
       login_with_api(user)
       Rails.logger.info ("response.headers['Authorization']:#{response.headers['Authorization']}")
@@ -37,7 +39,9 @@ describe Api::UsersController, type: :request do
     end
   end
 
-  context 'When creating a campaign' do
+
+
+  context 'When creating a campaign, comment, and donation' do
     res_head = nil
     before do
       login_with_api(user)
@@ -90,16 +94,6 @@ describe Api::UsersController, type: :request do
     end
   end
 
-  context 'When fetching campaigns without headers' do
-    before do
-      login_with_api(user)
-      Rails.logger.info ("response.headers['Authorization']:#{response.headers['Authorization']}")
-      get "/api/campaigns"
-    end
-    it 'returns 401' do
-      expect(response.status).to eq(401)
-    end
-  end
 
   context 'When create a donation' do
     before do
@@ -172,6 +166,20 @@ describe Api::UsersController, type: :request do
       expect(response.status).to eq(404)
     end
 
+  end
+
+
+  context 'When fetching campaigns without headers' do
+    before do
+      login_with_api(user)
+      Rails.logger.info ("response.headers['Authorization']:#{response.headers['Authorization']}")
+      #delete logout_url
+    end
+    it 'returns 401' do
+      Rails.logger.info "/api/campaigns without headers"
+      get "/api/campaigns"
+      expect(response.status).to eq(401)
+    end
   end
 
 end

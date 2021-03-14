@@ -78,4 +78,8 @@ Rails.application.configure do
     enable_starttls_auto: true 
   }
   
+  # bsun 20210313 log formatter
+  config.log_formatter = ::Logger::Formatter.new
+
+
 end
