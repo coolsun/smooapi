@@ -13,7 +13,6 @@ class Api::DonationsController < Api::BaseController
 
     # POST /create
     def create
-        logger.info "1"
         logger.info "donation_params:#{donation_params}"
         donation = Donation.new(donation_params)
         logger.info "donation:#{donation.inspect}"

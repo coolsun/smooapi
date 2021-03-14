@@ -139,8 +139,11 @@ describe Api::UsersController, type: :request do
   context 'When the user id is correct' do
     before do
       login_with_api(user)
+      # simulate storing token in cookie
       res_header = response.headers['Authorization']
+      # log user out
       delete logout_url
+      # simulate get token and user id from cookies
       get "/api/users/#{user.id}", headers: {
         'Authorization': res_header
       }
@@ -148,6 +151,8 @@ describe Api::UsersController, type: :request do
 
     it 'returns the user' do
       expect(json['data']).to have_id(user.id.to_s)
+      expect(json['data']).to have_attribute(:first_name).with_value(user.first_name.to_s)
+      expect(json['data']).to have_attribute(:last_name).with_value(user.last_name.to_s)
       expect(json['data']).to have_type('users')
     end
 
