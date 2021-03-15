@@ -1,5 +1,7 @@
 class Api::BaseController < ApplicationController
 
+  include Pundit
+  
   before_action :debug_log_headers
   before_action :authenticate_user!
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
