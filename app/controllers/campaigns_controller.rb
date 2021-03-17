@@ -1,14 +1,19 @@
 class CampaignsController < ApplicationController
     def all_campaigns
-        if session[:ttt].nil?
-            session[:ttt] = 100
-        else
-            session[:ttt] += 1
-        end
-        logger.info "session[:ttt]=#{session[:ttt]}"
+        # if session[:ttt].nil?
+        #     session[:ttt] = 100
+        # else
+        #     session[:ttt] += 1
+        # end
+        # logger.info "session[:ttt]=#{session[:ttt]}"
         
-        all_campaigns = Campaign.all
-        render json: all_campaigns.as_json(methods: [:goal_reached, :campaign_started])
+        @all_campaigns = Campaign.includes(:user)
+        #render json: @all_campaigns.as_json(methods: [:goal_reached, :campaign_started])
+    end
+
+    def test_json
+        @campaign = Campaign.first
+        logger.info ("#{@campaign}")
     end
 
     def comments

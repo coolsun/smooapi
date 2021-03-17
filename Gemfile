@@ -71,5 +71,6 @@ gem 'devise-jwt', '~> 0.8.0'
 gem 'foreman', '~> 0.87.2'
 gem 'jsonapi-rails', '~> 0.4.0'
 gem 'rack-cors', '1.1.1'
+gem 'jbuilder'
 
 gem 'pundit', '~> 2.1'

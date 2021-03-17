@@ -43,7 +43,7 @@ campaigns = Campaign.create([
         name:'education',
         goal:1000,
         description: 'Raise money and ambition for my master degree',
-        feature: true
+        featured: true
     },
     {
         user_id: 1,
@@ -51,7 +51,7 @@ campaigns = Campaign.create([
         name:'no shocker',
         goal:500,
         description: 'Raise money for the little trooper',
-        feature: true
+        featured: true
     },
 ])
 

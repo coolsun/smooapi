@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get 'campaigns/all_campaigns', to: 'campaigns#all_campaigns'
     get 'campaigns/comments', to: 'campaigns#comments'
     get 'campaigns/show/:id', to: 'campaigns#show'
+    get 'campaigns/test_json', to: 'campaigns#test_json'
   end
 
   # login required

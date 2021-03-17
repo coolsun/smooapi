@@ -68,6 +68,7 @@ RSpec.configure do |config|
   config.include ApiHelpers
   config.include UserHelpers
   config.include CategoryHelpers
+  config.include CampaignHelpers
   config.include Devise::Test::ControllerHelpers, type: :controller
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your

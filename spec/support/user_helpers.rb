@@ -2,7 +2,7 @@ require 'faker'
 module UserHelpers
 
   def build_user
-    FactoryBot.build(:user, 
+    u1 = FactoryBot.build(:user, 
       email: Faker::Internet.email, 
       password: Faker::Internet.password,
       first_name: 'John',
@@ -11,7 +11,7 @@ module UserHelpers
   end
 
   def create_user
-    FactoryBot.create(:user, 
+    u1 = FactoryBot.create(:user, 
       email: Faker::Internet.email, 
       password: Faker::Internet.password,
       first_name: 'John',
