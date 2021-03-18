@@ -34,3 +34,10 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+.DS_Store
+/frontend/node_modules
+/tmp
+
+/frontend/dist
+/frontend/build

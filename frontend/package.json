@@ -1,0 +1,56 @@
+{
+  "name": "scloud",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "vue-cli-service build --no-clean",
+    "lint": "vue-cli-service lint",
+    "start": "vue-cli-service serve"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "core-js": "^3.6.4",
+    "fabric": "^3.6.3",
+    "mdbvue": "./mdbvue/mdbvue-v6.7.1.tgz",
+    "mqtt": "^4.1.0",
+    "v-calendar": "^2.1.1",
+    "vue": "^2.6.11",
+    "vue-browser-geolocation": "^1.8.0",
+    "vue-cookie": "^1.1.4",
+    "vue-i18n": "^8.17.4",
+    "vue-signature-pad": "^2.0.2",
+    "vuedraggable": "^2.23.2",
+    "vux-uploader-component": "^1.0.23"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.3.0",
+    "@vue/cli-plugin-eslint": "~4.3.0",
+    "@vue/cli-service": "~4.3.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^8.0.0",
+    "vue-cli-plugin-mdb": "~2.1.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
